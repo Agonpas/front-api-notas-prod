@@ -78,7 +78,7 @@ function getMediaGlobal() {
             console.log(error);
         });
 }
-// Nueva función para obtener las notas de un estudiante
+// Función para obtener las notas de un estudiante
 function getNotasEstudiante(id, nombreCompleto) {
     axios.get(`https://api-notas-final-production.up.railway.app/api/estudiantes/${id}/notas`)
         .then(function (response) {
@@ -97,10 +97,11 @@ function getNotasEstudiante(id, nombreCompleto) {
                 notesList.appendChild(li);
             } else {
                 notas.forEach(function (nota) {
+                    const notaTexto = nota.nota !== null ? nota.nota : 'No evaluado';
                     const li = document.createElement('li');
                     li.innerHTML = `
                         <span class="font-semibold">${nota.asignatura}</span>: 
-                        <span class="text-blue-600">${nota.nota}</span>
+                        <span class="text-blue-600">${notaTexto}</span>
                     `;
                     li.classList.add('p-2', 'bg-gray-50', 'rounded', 'shadow');
                     notesList.appendChild(li);
