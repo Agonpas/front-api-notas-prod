@@ -9,17 +9,17 @@ function getEstudiantes() {
             estudiantes.forEach(function (estudiante) {
                 const li = document.createElement('li');
                 li.classList.add('p-4', 'bg-gray-50', 'rounded', 'shadow', 'hover:bg-gray-100', 'cursor-pointer');
-                li.textContent = `${estudiante.nombre} ${estudiante.apellidos} - Media: cargando...`;
+                li.textContent = `${estudiante.nombre} ${estudiante.apellidos} (Edad: ${estudiante.edad}) - Media: cargando...`;
 
                 // Cargar la media de cada estudiante
                 axios.get(`https://api-notas-final-production.up.railway.app/api/estudiantes/${estudiante.id}/media`)
                     .then(function (resMedia) {
                         const media = resMedia.data.media;
-                        li.textContent = `${estudiante.nombre} ${estudiante.apellidos} - Media: ${media !== null ? media.toFixed(2) : 'Sin notas'}`;
+                        li.textContent = `${estudiante.nombre} ${estudiante.apellidos} (Edad: ${estudiante.edad}) - Media: ${media !== null ? media.toFixed(2) : 'Sin notas'}`;
                     })
                     .catch(function (error) {
                         console.log(error);
-                        li.textContent = `${estudiante.nombre} ${estudiante.apellidos} - Media: error al obtener`;
+                        li.textContent = `${estudiante.nombre} ${estudiante.apellidos} (Edad: ${estudiante.edad}) - Media: error al obtener`;
                     });
 
                 // Evento para ver sus notas por asignatura
@@ -34,6 +34,7 @@ function getEstudiantes() {
             console.log(error);
         });
 }
+
 
 
 // Función para obtener la lista de asignaturas
