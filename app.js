@@ -50,7 +50,7 @@ function getAsignaturas() {
                 assignmentsList.appendChild(li);
 
                 // Ahora pedimos la media de cada asignatura
-                axios.get(`https://api-notas-final-production.up.railway.app//api/asignaturas/${asignatura.id}/media`)
+                axios.get(`https://api-notas-final-production.up.railway.app/api/asignaturas/${asignatura.id}/media`)
                 .then(function (resMedia) {
                     const media = resMedia.data.media;
                     li.textContent = `${asignatura.nombre} - Curso: ${asignatura.curso} - Media: ${media !== null ? media.toFixed(2) : 'Sin notas'}`;
@@ -79,7 +79,7 @@ function getMediaGlobal() {
 }
 // Nueva función para obtener las notas de un estudiante
 function getNotasEstudiante(id, nombreCompleto) {
-    axios.get(`http://127.0.0.1:8000/api/estudiantes/${id}/notas`)
+    axios.get(`https://api-notas-final-production.up.railway.app/api/estudiantes/${id}/notas`)
         .then(function (response) {
             const notas = response.data;
             const notesList = document.getElementById('notes-list');
@@ -117,5 +117,5 @@ window.onload = function() {
     getEstudiantes();
     getAsignaturas();
     getMediaGlobal();
-    getNotasEstudiante(id, nombreCompleto);
+    
 };
