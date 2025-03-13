@@ -79,7 +79,7 @@ function getMediaGlobal() {
 }
 // Nueva función para obtener las notas de un estudiante
 function getNotasEstudiante(id, nombreCompleto) {
-    axios.get(`https://api-notas-final-production.up.railway.app/api/estudiantes/${id}/notas`)
+    axios.get(`http://127.0.0.1:8000/api/estudiantes/${id}/notas`)
         .then(function (response) {
             const notas = response.data;
             const notesList = document.getElementById('notes-list');
